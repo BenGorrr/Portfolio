@@ -1,0 +1,47 @@
+th {
+  text-align: center;
+    padding: 5px;
+}
+
+td {
+  padding: 5px;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table caption {
+	padding: .5em 0;
+}
+
+@media screen and (max-width: 767px) {
+  table caption {
+    display: none;
+  }
+}
+
+#SteamTable td{
+  padding: 5px 10px;
+}
+
+.pw {
+  width: 154px;
+  text-align: center;
+}
+
+.hidetext { -webkit-text-security: disc; /* Default */ }
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.alert {
+  display: none;
+}
+
+.selected {
+  background-color: #66ff66;
+}

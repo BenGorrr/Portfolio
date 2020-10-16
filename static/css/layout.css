@@ -1,0 +1,292 @@
+* {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+}
+/*
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}*/
+
+body {
+  background-color: #1A1A1D;
+  color: #eee;
+  margin: 0;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+}
+
+
+
+/*HEADER*/
+/*
+.nav {
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 500;
+  font-size: 20px;
+  list-style: none;
+  background: black;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  width: auto;
+  height: 80px;
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+}*/
+
+/* Style the header: fixed position (always stay at the top) */
+.header {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* The progress container (grey background) */
+.progress-container {
+  width: 100%;
+  height: 2px;
+  background: #1A1A1D;
+}
+
+/* The progress bar (scroll indicator) */
+.progress-bar {
+  height: 2px;
+  background: #C3073F;
+  width: 0%;
+}
+
+
+.navbar {
+  border-bottom: 2px solid #C3073F;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(255,255,255);
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255);
+}
+
+.dropdown-menu a:hover {
+  color: #f60950;
+}
+
+.navbar-nav li > a {
+  color: #fff;
+}
+
+.active a{
+  color: #f60950 !important;
+}
+
+.navbar-brand img {
+  border: white .5px solid;
+  border-radius: 1px;
+  transition: width .8s, height .8s;
+}
+.navbar-brand:hover img{
+  width: 70px;
+  height: 70px;
+  border-color: #C3073F;
+}
+
+.nav-link {
+  padding: .5rem 1.5rem !important;
+}
+
+.navbar-nav li:hover {
+  border-bottom: #C3073F 2px solid;
+}
+
+/* DROPDOWN ANIMATION */
+@media (min-width: 992px) {
+  .animate {
+    animation-duration: 0.3s;
+    -webkit-animation-duration: 0.3s;
+    animation-fill-mode: both;
+    -webkit-animation-fill-mode: both;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  100% {
+    transform:translateY(0rem);
+    opacity: 1;
+  }
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+}
+/*DROPDOWN ANIMATION END */
+
+
+/*
+.nav a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: white;
+  /*margin-top: 12px;
+}
+
+.nav li:first-child {
+  margin-right: auto;
+}
+
+.nav a:hover {
+  color: black;
+  background: white;
+}
+@media (max-width: 800px){
+  .nav {
+    justify-content: space-around;
+  }
+  .nav li:first-child {
+    margin-right: 0
+  }
+}
+@media (max-width: 600px){
+  .nav {
+    flex-flow: column wrap;
+    padding: 0;
+    width: 100%;
+  }
+}
+*/
+
+/*END HEADER*/
+/*ABOUTME SECTION*/
+
+/*END ABOUTME SECTION*/
+/*CONTENT CONTAINER*/
+
+/*END CONTENT CONTAINER*/
+/*FOOTER*/
+.base-ft {
+  border-top: 2px solid #C3073F;
+  display: flex;
+  justify-content: flex-start;
+  background: black;
+  color: white;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.base-ft h2 {
+  letter-spacing: 2px;
+  padding: 20px 0px 20px 20px;
+  font-weight: 300;
+  font-size: 17px;
+}
+
+.base-ft .social {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.base-ft li {
+  flex-grow: 2;
+}
+
+.base-ft li:first-child {
+  flex-grow: 1;
+}
+
+.base-ft .social a {
+  text-decoration: none;
+  padding: 10px;
+  margin: 20px;
+  color: white;
+}
+
+.flip-card {
+  background-color: transparent;
+  height: 80px;
+  width: 190px;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+
+/* Style the back side */
+.flip-card-back {
+  background-color: black;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.nopadding {
+  padding: 0 !important;
+}

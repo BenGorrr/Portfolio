@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    {% block title %}
+    {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  </head>
+  <body>
+    <!--
+    <header>
+      <div class="topnav" id="myTopnav">
+        <ul class="nav">
+          <li> <img src="{{ url_for('static', filename='ppFaceCat.jpg')}}" alt=""> </li>
+          <li> <a href="{{ url_for('index') }}">Home</a></li>
+          <li> <a href="{{ url_for('project') }}">Projects</a></li>
+          <li> <a href="{{ url_for('steamAccstats') }}">Steam Account Stats</a></li>
+        </ul>
+      </div>
+
+    </header>-->
+    <div class="header">
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1A1A1D;">
+      <span class="navbar-brand">
+      <img src="{{ url_for('static', filename='ppFaceCat.jpg') }}" width="50px" height="50px"/></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li id="home" class="nav-item active">
+            <a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li id="project" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Projects
+            </a>
+            <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('steamAccstats') }}">Steam Stats</a>
+              <a class="dropdown-item" href="#">Others</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ url_for('project') }}">All Projects</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="base-ft">
+      <ul class="social">
+        <li>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                <h2 style="padding: 30px 10px 30px 20px;">Made by Bennie</h2>
+              </div>
+              <div class="flip-card-back">
+                <h2>Last Update: 4/10/2020</h2>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li> <a href="#">Github</a> </li>
+        <li> <a href="#">Youtube</a> </li>
+        <li> <a href="#">Instagram</a> </li>
+      </ul>
+    </footer>
+    <script>
+      // When the user scrolls the page, execute myFunction
+      window.onscroll = function() {myFunction()};
+
+      function myFunction() {
+        var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("myBar").style.width = scrolled + "%";
+      }
+    </script>
+    {% block script %}
+    {% endblock %}
+  </body>
+</html>
