@@ -10,19 +10,78 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-12 "> <!--col-sm-offset-2-->
-  <div class="container-fluid">
+  <div class="container-fluid min-vh-100">
     <div class="row">
-      <div class="col-sm-10 ">
-        <h1 class="display-4">Account List:</h1>
+
+      <div class="col-sm-2">
       </div>
-      <div class="col-sm-2 d-flex flex-column nopadding">
-        <div class="mt-auto btn-group" style="margin-bottom:5px;">
-          <!-- Trigger the modal with a button -->
-        <button class="btn btn-primary" type="button" name="addBtn" data-toggle="modal" data-target="#addModal">Add</button>
-        <button class="btn btn-danger" type="button" name="dltBtn" data-toggle="modal" data-target="#selModal">Delete</button>
+      <div class="col-sm-8">
+        <div class="row">
+          <div class="col-sm-10 ">
+            <h1 class="display-4">Account List:</h1>
+          </div>
+          <div class="col-sm-2 d-flex flex-column nopadding">
+            <div class="mt-auto btn-group" style="margin-bottom:5px;">
+              <!-- Trigger the modal with a button -->
+            <button class="btn btn-primary" type="button" name="addBtn" data-toggle="modal" data-target="#addModal">Add</button>
+            <button class="btn btn-danger" type="button" name="dltBtn" data-toggle="modal" data-target="#selModal">Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <!--ALERT-->
+        <div class='alert alert-success fade show' id="success-alert">
+            Successful Add!
+        </div>
+        <div class='alert alert-warning fade show' id="failed-alert">
+            Invalid Steam ID.
+        </div>
+
+        <div class="row">
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered table-light" id="SteamTable">
+              <caption class="text-center">All the information except <i>Username</i> and <i>Password</i> are from steam
+                <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API" target="_blank"> API</a></caption>
+                <thead>
+                  {%- for column in columns %}
+                     <th>{{ column }}</th>
+                  {%- endfor %}
+               </thead>
+               <tbody >
+                  {% set ns = namespace(count = 1) %}
+                   {%- for acc in accounts %}
+                      <tr>
+                        <td>{{ns.count}}</td>
+                        <td>{{acc.steamID}}</td>
+                        <td>{{acc.username}}</td>
+                        <td class="pw hidetext">{{acc.password}}</td>
+                        <td>{{acc.community_banned}}</td>
+                        {% if acc.vac_banned %}
+                        <td style="color:red"><strong>{{acc.vac_banned}}</strong></td>
+                        {% else %}
+                        <td>{{acc.vac_banned}}</td>
+                        {% endif %}
+                        <td>{{acc.numberOfVACBans}}</td>
+                        <td>{{acc.daysSinceLastBan}}</td>
+                        <td>{{acc.personaname}}</td>
+                      </tr>
+                    {% set ns.count = ns.count + 1 %}
+                    {% else %}
+                      <tr>
+                        There is 0 account in the list.
+                      </tr>
+                   {%- endfor %}
+           </tbody>
+            </table>
+          </div>
+          <div class="checkbox">
+            <label><input id="showPw"type="checkbox" onclick="showPass()"> Show Password</label>
+          </div>
         </div>
       </div>
+      <div class="col-sm-2">
+      </div>
+
     </div>
 
     <!-- Modal -->
@@ -59,13 +118,7 @@
         </div>
       </div>
     </div>
-    <!--ALERT-->
-    <div class='alert alert-success fade show' id="success-alert">
-        Successful Add!
-    </div>
-    <div class='alert alert-warning fade show' id="failed-alert">
-        Invalid Steam ID.
-    </div>
+
 
     <!-- Select Table Modal -->
     <div class="modal fade" id="selModal" tabindex="-1">
@@ -117,49 +170,9 @@
         </div>
       </div>
     </div>
+  </div>
 
 
-  </div>
-  <div class="table-responsive">
-    <table class="table table-hover table-bordered" id="SteamTable">
-      <caption class="text-center">All the information except <i>Username</i> and <i>Password</i> are from steam
-        <a href="https://developer.valvesoftware.com/wiki/Steam_Web_API" target="_blank"> API</a></caption>
-        <thead>
-          {%- for column in columns %}
-             <th>{{ column }}</th>
-          {%- endfor %}
-       </thead>
-       <tbody >
-          {% set ns = namespace(count = 1) %}
-           {%- for acc in accounts %}
-              <tr>
-                <td>{{ns.count}}</td>
-                <td>{{acc.steamID}}</td>
-                <td>{{acc.username}}</td>
-                <td class="pw hidetext">{{acc.password}}</td>
-                <td>{{acc.community_banned}}</td>
-                {% if acc.vac_banned %}
-                <td style="color:red"><strong>{{acc.vac_banned}}</strong></td>
-                {% else %}
-                <td>{{acc.vac_banned}}</td>
-                {% endif %}
-                <td>{{acc.numberOfVACBans}}</td>
-                <td>{{acc.daysSinceLastBan}}</td>
-                <td>{{acc.personaname}}</td>
-              </tr>
-            {% set ns.count = ns.count + 1 %}
-            {% else %}
-              <tr>
-                There is 0 account in the list.
-              </tr>
-           {%- endfor %}
-   </tbody>
-    </table>
-  </div>
-  <div class="checkbox">
-    <label><input id="showPw"type="checkbox" onclick="showPass()"> Show Password</label>
-  </div>
-</div>
 {% endblock %}
 
 {% block script %}

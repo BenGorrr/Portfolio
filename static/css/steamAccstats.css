@@ -1,29 +1,26 @@
-th {
-  text-align: center;
-    padding: 5px;
-}
 
-td {
-  padding: 5px;
-  text-align: left;
+.modal {
+  color: black;
 }
 
 table {
   border-collapse: collapse;
+  border-color: black;
 }
 
-table caption {
-	padding: .5em 0;
+.table thead th {
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid black;
 }
 
 @media screen and (max-width: 767px) {
   table caption {
     display: none;
   }
-}
-
-#SteamTable td{
-  padding: 5px 10px;
 }
 
 .pw {
