@@ -52,7 +52,7 @@
                    {%- for acc in accounts %}
                       <tr>
                         <td>{{ns.count}}</td>
-                        <td>{{acc.steamID}}</td>
+                        <td><a href="https://steamcommunity.com/profiles/{{acc.steamID}}" target="_blank">{{acc.steamID}}<a></td>
                         <td>{{acc.username}}</td>
                         <td class="pw hidetext">{{acc.password}}</td>
                         <td>{{acc.community_banned}}</td>
