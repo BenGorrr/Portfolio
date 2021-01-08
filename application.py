@@ -7,6 +7,9 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:76541@localhost:5432/web"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
+with app.app_context():
+    db.create_all()
+    db.session.commit()
 
 @app.route("/") #Route for Index page
 def index():
@@ -74,8 +77,6 @@ def addAcc(steamID, username="-", password="-"):
     print(f"Added {account.steamID} into the Database")
     db.session.commit()
     return True
-
-
 
 def delAcc():
     account = Account.query.filter(Account.steamID == steamID).delete()
