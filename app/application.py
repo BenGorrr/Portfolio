@@ -3,17 +3,14 @@ from models import *
 from steamapi import *
 from dotenv import load_dotenv
 import os
-load_dotenv('.env')
-app = Flask(__name__)
+# load_dotenv('.env')
+# app = Flask(__name__)
 #config
 # app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:76541@localhost:5432/web"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-db.init_app(app)
-with app.app_context():
-    db.create_all()
-    db.session.commit()
+# db.init_app(app)
 
 @app.route("/") #Route for Index page
 def index():
