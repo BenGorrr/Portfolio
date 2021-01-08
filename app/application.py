@@ -1,26 +1,20 @@
-from flask import Flask, render_template, request, jsonify
-from models import *
-from steamapi import *
-from dotenv import load_dotenv
+from flask import Flask, render_template, request, jsonify, Blueprint
+from .models import *
+from .steamapi import *
 import os
-# load_dotenv('.env')
-# app = Flask(__name__)
-#config
-# app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:76541@localhost:5432/web"
-# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get('DATABASE_URL')
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-# db.init_app(app)
+#make a blueprint so that we can use the routes from init
+main_page = Blueprint('main_page', __name__, template_folder='templates')
 
-@app.route("/") #Route for Index page
+@main_page.route("/") #Route for Index page
 def index():
     return render_template("index.html")
 
-@app.route("/projects") #Route for Project page
+@main_page.route("/projects") #Route for Project page
 def project():
     return render_template("project.html")
 
-@app.route("/steamAccstats") #Route for steamAccstats page
+@main_page.route("/steamAccstats") #Route for steamAccstats page
 def steamAccstats():
     columns = ["#","Steam ID", "Username", "Password", "Community Banned", "Vac Banned", "No. Of Vac", "Days Since Last Ban", "Profile Name"]
     selColumns = ["#","Steam ID", "Username", "Vac Banned", "Profile Name"]
@@ -28,7 +22,7 @@ def steamAccstats():
     #delAcc("76561198835787127")
     return render_template("steamAccstats.html", columns=columns, selColumns=selColumns, accounts=accounts)
 
-@app.route('/handle_new_acc', methods=['POST']) #Route for handle new account page
+@main_page.route('/handle_new_acc', methods=['POST']) #Route for handle new account page
 def handle_new_acc():
     steamID = request.form.get("steamid")
     username = request.form.get("username")
@@ -57,7 +51,7 @@ def handle_new_acc():
     else:
         return jsonify({'error':"ID not found!"})
 
-@app.route('/delete_acc', methods=['POST'])
+@main_page.route('/delete_acc', methods=['POST'])
 def delete_acc():
     steamID = request.form.get("steamid")
     account = Account.query.filter(Account.steamID == steamID).delete()

@@ -90,7 +90,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <form id="addAccForm" name="addAccForm" class="form" action="{{ url_for('handle_new_acc') }}" method="post">
+            <form id="addAccForm" name="addAccForm" class="form" action="{{ url_for('main_page.handle_new_acc') }}" method="post">
               <div class="form-group">
                 <label for="steamid" >Steam ID64:</label>
                 <input id="steamid" type="text" class="form-control" name="steamid" require pattern="[0-9]{17}" title="17 digits STEAMID64">

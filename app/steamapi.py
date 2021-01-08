@@ -1,5 +1,6 @@
 import requests, json, config
 from json.decoder import JSONDecodeError
+from flask import current_app as app #import the instance of the app
 
 def get_Acc_Info(steamid64):
     finalSteamid = ""
@@ -13,7 +14,7 @@ def get_Acc_Info(steamid64):
                 finalSteamid = finalSteamid + id
             else:
                 finalSteamid = finalSteamid + id + ','
-    url = 'http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key='+ config.steam_api_key +'&steamids=' + finalSteamid
+    url = 'http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/?key='+ app.config['STEAM_API_KEY'] +'&steamids=' + finalSteamid
     req = requests.get(url)
     req_json = req.json()
     #write_Json('data.txt', req_json['players'][0])
@@ -29,7 +30,7 @@ def get_Acc_Info(steamid64):
     return playerList
 
 def get_Display_Name(steamid64):
-    url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key='+ config.steam_api_key +'&steamids=' + steamid64
+    url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key='+ app.config['STEAM_API_KEY'] +'&steamids=' + steamid64
     req = requests.get(url)
     req_json = req.json()
     playerList = req_json['response']['players']
@@ -41,7 +42,7 @@ def validateSteamID(steamID):
     return False
 
 def get_Games_Owned(steamid64):
-    url = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key='+ config.steam_api_key +'&steamid=' + steamid64
+    url = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key='+ app.config['STEAM_API_KEY'] +'&steamid=' + steamid64
     req = requests.get(url)
     req_json = req.json()
     req_json = req_json['response']
@@ -53,7 +54,7 @@ def get_Games_Owned(steamid64):
     #write_Json('data.txt', req_json)
 
 def get_Game_Stats(appid, steamid64):
-    url = 'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid='+ appid + '&key='+ config.steam_api_key +'&steamid=' + steamid64
+    url = 'http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid='+ appid + '&key='+ app.config['STEAM_API_KEY'] +'&steamid=' + steamid64
     req = requests.get(url)
     req_json = req.json()
     #write_Json('data.txt', req_json)

@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from .models import db
+from .application import main_page
 
 def create_app(config_class):
     app = Flask(__name__)
@@ -10,9 +10,6 @@ def create_app(config_class):
     with app.app_context():
         db.create_all()
         db.session.commit()
-
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return app.config['STEAM_API_KEY']
+    app.register_blueprint(main_page) #register all the routes
+    
     return app
