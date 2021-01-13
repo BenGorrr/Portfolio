@@ -1,0 +1,44 @@
+
+.modal {
+  color: black;
+}
+
+table {
+  border-collapse: collapse;
+  border-color: black;
+}
+
+.table thead th {
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid black;
+}
+
+@media screen and (max-width: 767px) {
+  table caption {
+    display: none;
+  }
+}
+
+.pw {
+  width: 154px;
+  text-align: center;
+}
+
+.hidetext { -webkit-text-security: disc; /* Default */ }
+
+.bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+.alert {
+  display: none;
+}
+
+.selected {
+  background-color: #66ff66;
+}
